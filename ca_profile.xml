@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>Unraid template for Torsher, a self-hosted home cinema in one container: a TV showcase, your own library, playback while the file downloads, and series that follow themselves. Report problems with the app in torsher-app/torsher and problems with the template itself (fields, paths, install) in torsher-app/unraid-templates.</Profile>
+  <Icon>https://raw.githubusercontent.com/torsher-app/unraid-templates/main/images/torsher.png</Icon>
+  <WebPage>https://torsher.app</WebPage>
+  <DonateLink>https://torsher.app/donate</DonateLink>
+  <DonateText>Donations are the project's only funding.</DonateText>
+</CommunityApplications>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>torsher</Name>
+  <Repository>torsherapp/torsher:latest</Repository>
+  <Registry>https://hub.docker.com/r/torsherapp/torsher</Registry>
+  <Network>bridge</Network>
+  <Privileged>false</Privileged>
+  <Shell>sh</Shell>
+  <Support>https://github.com/torsher-app/torsher/issues</Support>
+  <Project>https://torsher.app</Project>
+  <ReadMe>https://github.com/torsher-app/unraid-templates#readme</ReadMe>
+  <Overview>Your home cinema in one container: a TV showcase with a catalog, your own library, playback while the file downloads, and series that follow themselves. Self-hosted and open source, built for the TV first.[br][br]Open the WebUI to create the owner account and run the setup wizard. Bring your own Torznab indexer, for example Prowlarr or Jackett; nothing is included.[br][br]The database lives in appdata; downloads and the library share a single Storage path, so kept files can be hard-linked instead of copied.[br][br]GPU transcoding: for Intel or AMD add a Device /dev/dri, for NVIDIA install the Nvidia Driver plugin, then add --runtime=nvidia to Extra Parameters. Details: https://github.com/torsher-app/unraid-templates#gpu-transcoding[br][br]Documentation: https://torsher.app/docs/</Overview>
+  <Category>MediaServer:Video Downloaders:</Category>
+  <WebUI>http://[IP]:[PORT:8080]/panel/</WebUI>
+  <TemplateURL>https://raw.githubusercontent.com/torsher-app/unraid-templates/main/templates/torsher.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/torsher-app/unraid-templates/main/images/torsher.png</Icon>
+  <ExtraSearchTerms>torrent streaming showcase library catalog tv series</ExtraSearchTerms>
+  <ExtraParams/>
+  <PostArgs/>
+  <DonateText>Support the project</DonateText>
+  <DonateLink>https://torsher.app/donate</DonateLink>
+  <Config Name="WebUI" Target="8080" Default="8080" Mode="tcp" Description="Showcase at /, control panel at /panel/." Type="Port" Display="always" Required="true" Mask="false"/>
+  <Config Name="Peer port (TCP)" Target="51420" Default="51420" Mode="tcp" Description="Incoming connections from torrent peers. Keep it equal to the Peer port variable." Type="Port" Display="always" Required="false" Mask="false"/>
+  <Config Name="Peer port (UDP)" Target="51420" Default="51420" Mode="udp" Description="Incoming connections from torrent peers. Keep it equal to the Peer port variable." Type="Port" Display="always" Required="false" Mask="false"/>
+  <Config Name="Appdata" Target="/data" Default="/mnt/user/appdata/torsher" Mode="rw" Description="Database, keys, the log and backups. Keep it on a pool, not on a share mounted from another machine. Tip: keep the appdata share on a pool only (an exclusive share), or use /mnt/cache/appdata/torsher, so the database does not go through the user-share file system." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Storage" Target="/storage" Default="/mnt/user/data/torsher" Mode="rw" Description="Downloads (/storage/torrents) and the library (/storage/library). Keep both in this one path: separate paths turn hard links into copies." Type="Path" Display="always" Required="true" Mask="false"/>
+  <Config Name="Existing media" Target="/media" Default="" Mode="ro" Description="Optional. Your existing movies and series, read-only. Add them in the panel under Library." Type="Path" Display="always" Required="false" Mask="false"/>
+  <Config Name="Peer port" Target="ENGINE_PEER_PORT" Default="51420" Description="Port the torrent engine listens on. Must match both peer port mappings." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Downloads folder" Target="DOWNLOADS_PATH" Default="/storage/torrents" Description="Default downloads folder inside the container. Keep both under /storage so hard links work between downloads and the library. A folder chosen in Settings → Storage takes precedence." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="Library folder" Target="LIBRARY_PATH" Default="/storage/library" Description="Default library folder inside the container. Keep both under /storage so hard links work between downloads and the library. A folder chosen in Settings → Storage takes precedence." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="PUID" Target="PUID" Default="99" Description="Owner of the files Torsher writes. 99 is nobody on Unraid." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="PGID" Target="PGID" Default="100" Description="Group of the files Torsher writes. 100 is users on Unraid." Type="Variable" Display="advanced" Required="true" Mask="false"/>
+  <Config Name="TORSHER_SECRET" Target="TORSHER_SECRET" Default="" Description="Optional. Key that encrypts saved secrets in the database. Without it a key file is created in appdata: keep it with your backups." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="TMDB_ACCESS_TOKEN" Target="TMDB_ACCESS_TOKEN" Default="" Description="Optional. Your own TMDB API Read Access Token instead of the app key built into the image." Type="Variable" Display="advanced" Required="false" Mask="true"/>
+  <Config Name="TRUST_PROXY" Target="TRUST_PROXY" Default="" Description="Only behind a reverse proxy: its address or subnet, so sign-in limits see real client addresses. Leave empty without a proxy." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+</Container>
