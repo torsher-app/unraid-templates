@@ -9,14 +9,16 @@ The app itself, its issues and releases live in [torsher-app/torsher](https://gi
 
 ## Install
 
-Until Torsher is listed in Community Applications, add the template by hand. Open the Unraid terminal (the `>_` icon in the header) and run:
+Open the **Apps** tab (Community Applications), search for **Torsher** and select **Install**. Check the paths below and select **Apply**.
+
+If Torsher doesn't show up in Apps yet, add the template by hand. Open the Unraid terminal (the `>_` icon in the header) and run:
 
 ```bash
 curl -fsSL -o /boot/config/plugins/dockerMan/templates-user/my-torsher.xml \
   https://raw.githubusercontent.com/torsher-app/unraid-templates/main/templates/torsher.xml
 ```
 
-Then open **Docker**, select **Add Container**, and pick **torsher** in the **Template** list. Check the paths below and select **Apply**.
+Then open **Docker**, select **Add Container**, and pick **torsher** in the **Template** list.
 
 When the container is running, select **WebUI** in its menu. The panel asks you to create the owner account and starts the setup wizard.
 
